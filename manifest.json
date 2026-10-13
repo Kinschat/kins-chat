@@ -1,0 +1,12 @@
+{
+  "id": "/",
+  "name": "KINS CHAT",
+  "short_name": "KINS CHAT",
+  "description": "Connect and chat with friends using KINS CHAT.",
+  "start_url": "/kins-chat/",
+  "scope": "/kins-chat/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff69b4",
+  "icons": []
+}
