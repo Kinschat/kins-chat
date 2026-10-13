@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ec4899">
+<title>KINS CHAT</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#fff5fa;color:#333}
+header{background:#ec4899;color:white;padding:22px;text-align:center;font-size:25px;font-weight:bold}
+nav{display:flex;justify-content:space-around;background:white;padding:14px;position:sticky;top:0;box-shadow:0 2px 8px #ddd}
+nav button{border:0;background:white;color:#d63384;font-weight:bold;font-size:15px}
+main{padding:18px;max-width:600px;margin:auto}
+.card{background:white;padding:17px;margin:12px 0;border-radius:16px;box-shadow:0 2px 10px #f1c4da}
+h2{color:#d63384}
+input{width:100%;padding:13px;border:1px solid #ed9bc3;border-radius:10px;margin:8px 0;font-size:16px}
+button.primary{background:#ec4899;color:white;border:0;padding:13px;border-radius:10px;width:100%;font-size:16px}
+.person{display:flex;align-items:center;gap:12px}
+.avatar{width:45px;height:45px;border-radius:50%;background:#f8c7df;display:grid;place-items:center;font-weight:bold;color:#a21caf}
+small{color:#777}
+.hidden{display:none}
+footer{text-align:center;color:#888;padding:20px}
+</style>
+</head>
+<body>
+<header>💗 KINS CHAT</header>
+<nav>
+<button onclick="show('home')">Home</button>
+<button onclick="show('chats')">Chats</button>
+<button onclick="show('status')">Status</button>
+<button onclick="show('profile')">Profile</button>
+</nav>
+<main>
+<section id="home">
+<div class="card">
+<h2>Welcome to KINS CHAT 💗</h2>
+<p>Your friendly hub for connecting with people.</p>
+<p><small>This is your first demo version.</small></p>
+</div>
+<div class="card">
+<h2>Community Feed</h2>
+<p>Share your thoughts with your community.</p>
+<input id="postText" placeholder="What's on your mind?">
+<button class="primary" onclick="post()">Share post</button>
+<div id="posts"></div>
+</div>
+</section>
+<section id="chats" class="hidden">
+<div class="card"><h2>Your Chats</h2>
+<p>Messaging demo — messages stay on this device.</p>
+<div id="messages"></div>
+<input id="msg" placeholder="Type a message">
+<button class="primary" onclick="send()">Send message</button>
+</div>
+</section>
+<section id="status" class="hidden">
+<div class="card"><h2>Status & Stories</h2>
+<p>Share a text status in this demo.</p>
+<input id="statusText" placeholder="Write your status">
+<button class="primary" onclick="addStatus()">Post status</button>
+<div id="statuses"></div>
+</div>
+</section>
+<section id="profile" class="hidden">
+<div class="card"><h2>Your Profile</h2>
+<div class="avatar">K</div>
+<input id="userName" placeholder="Enter your name">
+<button class="primary" onclick="saveName()">Save name</button>
+<p id="savedName"></p>
+</div>
+<div class="card"><h2>Coming later</h2><p>Real accounts, online messaging, group chats, photo sharing, notifications, and voice/video calls need additional development and a secure backend.</p></div>
+</section>
+</main>
+<footer>KINS CHAT · White & Pink Demo</footer>
+<script>
+function show(id){
+['home','chats','status','profile'].forEach(x=>document.getElementById(x).classList.add('hidden'));
+document.getElementById(id).classList.remove('hidden');
+}
+function post(){
+let v=document.getElementById('postText');
+if(v.value.trim()){let p=document.createElement('p');p.className='card';p.textContent=v.value;document.getElementById('posts').prepend(p);v.value='';}
+}
+function send(){
+let v=document.getElementById('msg');
+if(v.value.trim()){let p=document.createElement('p');p.textContent='You: '+v.value;document.getElementById('messages').appendChild(p);v.value='';}
+}
+function addStatus(){
+let v=document.getElementById('statusText');
+if(v.value.trim()){let p=document.createElement('p');p.className='card';p.textContent=v.value;document.getElementById('statuses').prepend(p);v.value='';}
+}
+function saveName(){
+let v=document.getElementById('userName').value.trim();
+if(v)document.getElementById('savedName').textContent='Welcome, '+v+'!';
+}
+</script>
+</body>
+</html>
