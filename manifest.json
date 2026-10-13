@@ -1,12 +1,14 @@
 {
-  "id": "/",
+  "id": "/kins-chat/",
   "name": "KINS CHAT",
   "short_name": "KINS CHAT",
-  "description": "Connect and chat with friends using KINS CHAT.",
+  "description": "KINS CHAT is a social messaging platform for connecting friends and family.",
   "start_url": "/kins-chat/",
   "scope": "/kins-chat/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ff69b4",
+  "orientation": "portrait",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FF69B4",
+  "lang": "en",
   "icons": []
 }
