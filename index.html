@@ -1,100 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><link rel="manifest" href="/kins-chat/manifest.json">
-<meta name="theme-color" content="#FF69B4">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ec4899">
-<title>KINS CHAT</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#fff5fa;color:#333}
-header{background:#ec4899;color:white;padding:22px;text-align:center;font-size:25px;font-weight:bold}
-nav{display:flex;justify-content:space-around;background:white;padding:14px;position:sticky;top:0;box-shadow:0 2px 8px #ddd}
-nav button{border:0;background:white;color:#d63384;font-weight:bold;font-size:15px}
-main{padding:18px;max-width:600px;margin:auto}
-.card{background:white;padding:17px;margin:12px 0;border-radius:16px;box-shadow:0 2px 10px #f1c4da}
-h2{color:#d63384}
-input{width:100%;padding:13px;border:1px solid #ed9bc3;border-radius:10px;margin:8px 0;font-size:16px}
-button.primary{background:#ec4899;color:white;border:0;padding:13px;border-radius:10px;width:100%;font-size:16px}
-.person{display:flex;align-items:center;gap:12px}
-.avatar{width:45px;height:45px;border-radius:50%;background:#f8c7df;display:grid;place-items:center;font-weight:bold;color:#a21caf}
-small{color:#777}
-.hidden{display:none}
-footer{text-align:center;color:#888;padding:20px}
-</style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff4f9a">
+  <meta name="description" content="KINS CHAT — Connect, share and make friends.">
+  <title>KINS CHAT - Connect With People</title>
+
+  <link rel="manifest" href="./manifest.json">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff5fa;
+      color: #29212a;
+      min-height: 100vh;
+    }
+
+    header {
+      background: white;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 12px #00000008;
+    }
+
+    .logo {
+      color: #f42f86;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .heart {
+      color: #f42f86;
+    }
+
+    .hero {
+      max-width: 450px;
+      margin: 35px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .icon {
+      width: 95px;
+      height: 95px;
+      margin: 10px auto 22px;
+      background: #ffe0ef;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 48px;
+    }
+
+    h1 {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: #777;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px #e94b9412;
+      text-align: left;
+    }
+
+    .card h2 {
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 23px;
+    }
+
+    .card p {
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      margin: 15px 0 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #eadde5;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #f42f86;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #f42f86;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    button:active {
+      opacity: 0.85;
+    }
+
+    .switch {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .switch a {
+      color: #f42f86;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    #message {
+      margin-top: 15px;
+      color: #d51d70;
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      color: #888;
+      font-size: 12px;
+      padding: 15px 10px 30px;
+    }
+  </style>
 </head>
+
 <body>
-<header>💗 KINS CHAT</header>
-<nav>
-<button onclick="show('home')">Home</button>
-<button onclick="show('chats')">Chats</button>
-<button onclick="show('status')">Status</button>
-<button onclick="show('profile')">Profile</button>
-</nav>
-<main>
-<section id="home">
-<div class="card">
-<h2>Welcome to KINS CHAT 💗</h2>
-<p>Your friendly hub for connecting with people.</p>
-<p><small>This is your first demo version.</small></p>
-</div>
-<div class="card">
-<h2>Community Feed</h2>
-<p>Share your thoughts with your community.</p>
-<input id="postText" placeholder="What's on your mind?">
-<button class="primary" onclick="post()">Share post</button>
-<div id="posts"></div>
-</div>
-</section>
-<section id="chats" class="hidden">
-<div class="card"><h2>Your Chats</h2>
-<p>Messaging demo — messages stay on this device.</p>
-<div id="messages"></div>
-<input id="msg" placeholder="Type a message">
-<button class="primary" onclick="send()">Send message</button>
-</div>
-</section>
-<section id="status" class="hidden">
-<div class="card"><h2>Status & Stories</h2>
-<p>Share a text status in this demo.</p>
-<input id="statusText" placeholder="Write your status">
-<button class="primary" onclick="addStatus()">Post status</button>
-<div id="statuses"></div>
-</div>
-</section>
-<section id="profile" class="hidden">
-<div class="card"><h2>Your Profile</h2>
-<div class="avatar">K</div>
-<input id="userName" placeholder="Enter your name">
-<button class="primary" onclick="saveName()">Save name</button>
-<p id="savedName"></p>
-</div>
-<div class="card"><h2>Coming later</h2><p>Real accounts, online messaging, group chats, photo sharing, notifications, and voice/video calls need additional development and a secure backend.</p></div>
-</section>
-</main>
-<footer>KINS CHAT · White & Pink Demo</footer>
-<script>
-function show(id){
-['home','chats','status','profile'].forEach(x=>document.getElementById(x).classList.add('hidden'));
-document.getElementById(id).classList.remove('hidden');
-}
-function post(){
-let v=document.getElementById('postText');
-if(v.value.trim()){let p=document.createElement('p');p.className='card';p.textContent=v.value;document.getElementById('posts').prepend(p);v.value='';}
-}
-function send(){
-let v=document.getElementById('msg');
-if(v.value.trim()){let p=document.createElement('p');p.textContent='You: '+v.value;document.getElementById('messages').appendChild(p);v.value='';}
-}
-function addStatus(){
-let v=document.getElementById('statusText');
-if(v.value.trim()){let p=document.createElement('p');p.className='card';p.textContent=v.value;document.getElementById('statuses').prepend(p);v.value='';}
-}
-function saveName(){
-let v=document.getElementById('userName').value.trim();
-if(v)document.getElementById('savedName').textContent='Welcome, '+v+'!';
-}
-</script>
+  <header>
+    <div class="logo">KINS CHAT <span class="heart">♥</span></div>
+    <span>Connect • Share • Smile</span>
+  </header>
+
+  <main class="hero">
+    <div class="icon">💬</div>
+
+    <h1>Welcome to <span class="heart">KINS CHAT</span></h1>
+
+    <div class="subtitle">
+      Your friendly hub for connecting with people.<br>
+      Share your thoughts with your community.
+    </div>
+
+    <section class="card">
+      <h2 id="formTitle">Welcome back!</h2>
+      <p id="formSubtitle">Connect with your people.</p>
+
+      <form id="loginForm">
+        <div id="nameField" hidden>
+          <label for="fullName">Your name</label>
+          <input id="fullName" type="text"
+                 placeholder="Enter your name"
+                 autocomplete="name">
+        </div>
+
+        <label for="email">Email address</label>
+        <input id="email" type="email"
+               placeholder="you@example.com"
+               autocomplete="email" required>
+
+        <label for="password">Password</label>
+        <input id="password" type="password"
+               placeholder="Enter your password"
+               autocomplete="current-password"
+               minlength="6" required>
+
+        <button type="submit" id="submitButton">
+          Log In
+        </button>
+
+        <div id="message" role="status"></div>
+      </form>
+
+      <div class="switch">
+        <span id="switchText">New to KINS CHAT?</span>
+        <a id="switchLink" href="#">Create an account</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made with ♥ for the KINS CHAT community.
+  </footer>
+
+  <script>
+    let isSignup = false;
+
+    const form = document.getElementById("loginForm");
+    const nameField = document.getElementById("nameField");
+    const fullName = document.getElementById("fullName");
+    const password = document.getElementById("password");
+    const message = document.getElementById("message");
+
+    document.getElementById("switchLink").onclick = function(event) {
+      event.preventDefault();
+      isSignup = !isSignup;
+
+      nameField.hidden = !isSignup;
+      fullName.required = isSignup;
+
+      document.getElementById("formTitle").textContent =
+        isSignup ? "Create your account" : "Welcome back!";
+
+      document.getElementById("formSubtitle").textContent =
+        isSignup ? "Join the KINS CHAT community." :
+                   "Connect with your people.";
+
+      document.getElementById("submitButton").textContent =
+        isSignup ? "Sign Up" : "Log In";
+
+      document.getElementById("switchText").textContent =
+        isSignup ? "Already have an account?" : "New to KINS CHAT?";
+
+      document.getElementById("switchLink").textContent =
+        isSignup ? "Log in" : "Create an account";
+
+      password.autocomplete =
+        isSignup ? "new-password" : "current-password";
+
+      message.textContent = "";
+    };
+
+    form.onsubmit = function(event) {
+      event.preventDefault();
+
+      message.textContent =
+        "The KINS CHAT design is ready, but account access is not connected yet. A secure login service must be set up before you can create an account or log in.";
+    };
+  </script>
 </body>
 </html>
