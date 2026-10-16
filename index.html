@@ -218,50 +218,107 @@
     Made with ♥ for the KINS CHAT community.
   </footer>
 
-  <script>
-    let isSignup = false;
+ <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
-    const form = document.getElementById("loginForm");
-    const nameField = document.getElementById("nameField");
-    const fullName = document.getElementById("fullName");
-    const password = document.getElementById("password");
-    const message = document.getElementById("message");
+const firebaseConfig = {
+  apiKey: "AIzaSyDkzo2BpL-Wuzh76g0msZNnnHffKYrqmJY",
+  authDomain: "kins-chat-app-2026.firebaseapp.com",
+  projectId: "kins-chat-app-2026",
+  storageBucket: "kins-chat-app-2026.firebasestorage.app",
+  messagingSenderId: "195317477859",
+  appId: "1:195317477859:web:02a2bc34cf94ebe5a3b0d6",
+  measurementId: "G-LXCMD9NNJB"
+};
 
-    document.getElementById("switchLink").onclick = function(event) {
-      event.preventDefault();
-      isSignup = !isSignup;
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-      nameField.hidden = !isSignup;
-      fullName.required = isSignup;
+let isSignup = false;
 
-      document.getElementById("formTitle").textContent =
-        isSignup ? "Create your account" : "Welcome back!";
+const form = document.getElementById("loginForm");
+const nameField = document.getElementById("nameField");
+const fullName = document.getElementById("fullName");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const message = document.getElementById("message");
+const submitButton = document.getElementById("submitButton");
+const switchLink = document.getElementById("switchLink");
 
-      document.getElementById("formSubtitle").textContent =
-        isSignup ? "Join the KINS CHAT community." :
-                   "Connect with your people.";
+switchLink.onclick = function(event) {
+  event.preventDefault();
+  isSignup = !isSignup;
 
-      document.getElementById("submitButton").textContent =
-        isSignup ? "Sign Up" : "Log In";
+  nameField.hidden = !isSignup;
+  fullName.required = isSignup;
 
-      document.getElementById("switchText").textContent =
-        isSignup ? "Already have an account?" : "New to KINS CHAT?";
+  document.getElementById("formTitle").textContent =
+    isSignup ? "Create your account" : "Welcome back!";
 
-      document.getElementById("switchLink").textContent =
-        isSignup ? "Log in" : "Create an account";
+  document.getElementById("formSubtitle").textContent =
+    isSignup ? "Join the KINS CHAT community." :
+               "Connect with your people.";
 
-      password.autocomplete =
-        isSignup ? "new-password" : "current-password";
+  submitButton.textContent = isSignup ? "Sign Up" : "Log In";
 
-      message.textContent = "";
+  document.getElementById("switchText").textContent =
+    isSignup ? "Already have an account?" : "New to KINS CHAT?";
+
+  switchLink.textContent = isSignup ? "Log in" : "Create an account";
+
+  password.autocomplete = isSignup ? "new-password" : "current-password";
+  message.textContent = "";
+};
+
+form.onsubmit = async function(event) {
+  event.preventDefault();
+
+  const emailValue = email.value.trim();
+  const passwordValue = password.value;
+
+  message.textContent = "Please wait...";
+  submitButton.disabled = true;
+
+  try {
+    if (isSignup) {
+      const credential = await createUserWithEmailAndPassword(
+        auth, emailValue, passwordValue
+      );
+
+      const displayName = fullName.value.trim();
+
+      if (displayName) {
+        await updateProfile(credential.user, {
+          displayName: displayName
+        });
+      }
+
+      message.textContent = "Account created successfully! Welcome to KINS CHAT.";
+    } else {
+      await signInWithEmailAndPassword(auth, emailValue, passwordValue);
+      message.textContent = "Login successful! Welcome back to KINS CHAT.";
+    }
+  } catch (error) {
+    const errors = {
+      "auth/email-already-in-use": "This email already has an account. Please log in.",
+      "auth/invalid-email": "Please enter a valid email address.",
+      "auth/weak-password": "Your password must be at least 6 characters.",
+      "auth/invalid-credential": "Email or password is incorrect.",
+      "auth/network-request-failed": "Check your internet connection and try again."
     };
 
-    form.onsubmit = function(event) {
-      event.preventDefault();
-
-      message.textContent =
-        "The KINS CHAT design is ready, but account access is not connected yet. A secure login service must be set up before you can create an account or log in.";
-    };
-  </script>
+    message.textContent =
+      errors[error.code] || "Something went wrong. Please try again.";
+  } finally {
+    submitButton.disabled = false;
+  }
+};
+</script>
 </body>
 </html>
